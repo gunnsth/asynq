@@ -1,0 +1,40 @@
+version: '3.4'
+
+services:
+  taskqueue:
+    build:
+      context: ..
+      dockerfile: ./testdata/Dockerfile
+      target: taskqueue
+    command: /mybin/taskqueue
+    depends_on:
+      - redis
+  taskrunner:
+    build:
+      context: ..
+      dockerfile: ./testdata/Dockerfile
+      target: taskrunner
+    command: /mybin/taskrunner
+    depends_on:
+      - redis
+  taskrunner2:
+    build:
+      context: ..
+      dockerfile: ./testdata/Dockerfile
+      target: taskrunner
+    command: /mybin/taskrunner
+    depends_on:
+      - redis
+  taskrunner3:
+    build:
+      context: ..
+      dockerfile: ./testdata/Dockerfile
+      target: taskrunner
+    command: /mybin/taskrunner
+    depends_on:
+      - redis
+  redis:
+    image: bitnami/redis
+    environment:
+      - REDIS_PASSWORD=kjkjfoip
+
